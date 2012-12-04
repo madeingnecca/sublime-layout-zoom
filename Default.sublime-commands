@@ -1,0 +1,12 @@
+[
+    {
+        "caption": "Layout zoom",
+        "command": "layout_zoom",
+        "args": {"op": "get"}
+    },
+    {
+        "caption": "Layout restore",
+        "command": "layout_zoom",
+        "args": {"op": "restore"}
+    }
+]
