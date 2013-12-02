@@ -2,11 +2,16 @@
     {
         "caption": "Layout zoom",
         "command": "layout_zoom",
-        "args": {"op": "get"}
+        "args": {}
     },
     {
         "caption": "Layout restore",
-        "command": "layout_zoom",
-        "args": {"op": "restore"}
+        "command": "layout_zoom_restore",
+        "args": {}
+    },
+    {
+        "caption": "Layout clean data",
+        "command": "layout_zoom_clean",
+        "args": {}
     }
 ]
