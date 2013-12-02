@@ -3,7 +3,7 @@ import sublime_plugin
 import json
 import os
 
-STORAGE = sublime.packages_path() + '/User/LayoutZoomStorage.json'
+STORAGE = os.path.join(sublime.packages_path(), 'User', 'LayoutZoomStorage.json')
 
 class BaseLayoutCommand(sublime_plugin.WindowCommand):
     def defaultData(self):
@@ -39,9 +39,14 @@ class LayoutZoomCommand(BaseLayoutCommand):
         window = self.window
         wid = str(window.id())
 
-        data = self.storageRead()
-
         layout = window.get_layout()
+
+        # Do not zoom if layout is already zoomed.
+        if len(layout['cells']) == 1:
+            sublime.status_message('Layout is already zoomed.')
+            return
+
+        data = self.storageRead()
 
         # Remember the count of views per each group.
         groups = []
@@ -117,3 +122,5 @@ class LayoutZoomCleanCommand(BaseLayoutCommand):
 
         # Save the storage.
         self.storageWrite(data)
+
+        sublime.status_message('Removed {0} records from storage.'.format(len(diff)))
